@@ -1,42 +1,372 @@
-#root {
-  max-width: 1280px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container principal */
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e0f2f1 100%);
+}
+
+.main-content {
+  max-width: 480px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem 1rem 6rem 1rem;
+}
+
+/* En-têtes de page */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1,
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Widgets */
+.widget {
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f3f4f6;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+}
+
+.widget-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Météo du cerveau */
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.mood-btn {
+  background: #f9fafb;
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mood-btn:hover {
+  transform: scale(1.05);
+}
+
+.mood-btn.active {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.mood-excellent { background: #d1fae5; }
+.mood-good { background: #ccfbf1; }
+.mood-neutral { background: #f3f4f6; }
+.mood-tired { background: #fed7aa; }
+
+.mood-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.mood-label {
+  font-size: 0.75rem;
+  color: #374151;
+}
+
+/* Défi du jour */
+.challenge-card {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.challenge-text {
+  font-size: 0.9rem;
+  color: #374151;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Boutons */
+.btn {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #f97316;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #ea580c;
+}
+
+.btn-secondary {
+  background: #8b5cf6;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #7c3aed;
+}
+
+/* Statistiques */
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stat-item {
+  width: 100%;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #6b7280;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.progress-bar {
+  height: 0.5rem;
+  background: #f3f4f6;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+  border-radius: 9999px;
+}
+
+.stat-teal { background: #14b8a6; }
+.stat-emerald { background: #10b981; }
+.stat-orange { background: #f97316; }
+
+/* Mode Focus */
+.focus-mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.focus-info {
+  flex: 1;
+}
+
+.focus-title {
+  font-size: 0.875rem;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.focus-subtitle {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Page Journal */
+.journal-textarea {
+  width: 100%;
+  padding: 0.875rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  resize: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.journal-textarea:focus {
+  outline: none;
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+/* Liste des défis */
+.challenges-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.challenge-item {
+  background: #f9fafb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.challenge-info h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.challenge-info p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.difficulty-badge {
+  font-size: 0.75rem;
+  background: #fed7aa;
+  color: #9a3412;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+/* Paramètres */
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #374151;
+}
+
+.setting-item input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+}
+
+/* État vide */
+.empty-state {
   text-align: center;
+  padding: 3rem 1rem;
+  color: #6b7280;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.3;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.75rem 0.5rem;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  color: #6b7280;
+}
+
+.nav-item.active {
+  color: #14b8a6;
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+}
+
+.nav-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .main-content {
+    padding: 1rem 0.75rem 6rem 0.75rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .mood-grid {
+    gap: 0.375rem;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .mood-btn {
+    padding: 0.75rem 0.25rem;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  
+  .mood-emoji {
+    font-size: 1.5rem;
+  }
 }
